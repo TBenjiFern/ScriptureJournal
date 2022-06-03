@@ -1,0 +1,26 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Scripture Journal</h1>
+    <picture class="scriptureStudyImg">
+        <img srcset="images/scripture_450x.webp 450w,
+                        images/scripture_800x.webp 800w,
+                        images/scripture_1500x.webp 1500w" sizes="(max-width: 1120px) 100vw, 50vw"
+            src="images/scripture_800x.webp" alt="Opened scriptures with notebook">
+    </picture>
+    <section class="homeSections">
+        <h2>What is Scripture Journal?</h2>
+        <p class="homeSectionText">Scripture Journal (SJ) is a web application which makes saving your favorite scriptures quick and easy!
+            SJ uses ASP.NET Razor Pages to create a simple webpage with a database built in. All you need to do
+            is click the "Scripture Journal" button at the top of the page to jump into your journal collection.
+            Once there, feel free to create new journal entries, edit old ones, search through your current entries
+            by book or keyword in your notes, and delete entries anytime you want!
+        </p>
+
+    </section>
+    
+</div>

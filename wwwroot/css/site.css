@@ -1,0 +1,96 @@
+* {
+  font-family: 'Lora', serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Lato', sans-serif;
+
+}
+
+body {
+  background-color: darkcyan;
+}
+
+picture {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+img {
+  box-shadow: 0px 0px 20px black;
+  margin: 20px;
+  width: 100%;
+}
+
+nav {
+  background-color: #89cae0;
+}
+
+.navbar-brand {
+  padding: 6px;
+  margin: 5px;
+}
+
+.navbar-brand:hover {
+  background-color: #89cae0;
+}
+
+.nav-item :hover {
+  background-color: #89cae0;
+}
+
+.container {
+  background-color:#d0e9f2;
+  flex: 1 1 auto;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.form-control {
+  width: auto;
+}
+
+html {
+  font-size: 14px;
+}
+
+.scriptureStudyImg {
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.homeSections {
+  margin: 10px;
+}
+
+.homeSectionText {
+  text-align: left;
+}
+
+.sjHeading {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
