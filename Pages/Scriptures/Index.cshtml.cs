@@ -27,13 +27,15 @@ namespace ScriptureJournal.Pages_Scriptures
         public string CurrentSort { get; set; }
 
         public IList<Scripture> Scripture { get; set; } = default!;
-        public IList<Scripture> ScriptureSort { get; set; } = default!;
 
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
         public SelectList Book { get; set; }
         [BindProperty(SupportsGet = true)]
         public string ScriptureBook { get; set; }
+        // Was this how I get both sorting and filtering on the same page get?
+        // [BindProperty(SupportsGet = true)]
+        // public string sortOrder { get; set; }
 
 
         public async Task OnGetAsync(string sortOrder)
@@ -42,7 +44,7 @@ namespace ScriptureJournal.Pages_Scriptures
             BookSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
 
-            IQueryable<Scripture> scriptureOrdering = from s in _context.Scripture
+            var scriptureOrdering = from s in _context.Scripture
                                                       select s;
 
             switch (sortOrder)
@@ -67,26 +69,18 @@ namespace ScriptureJournal.Pages_Scriptures
                                            orderby b.Book
                                            select b.Book;
 
-            var notes = from n in _context.Scripture
-                        select n;
-
             if (!string.IsNullOrEmpty(SearchString))
             {
-                notes = notes.Where(s => s.Notes.Contains(SearchString));
+                scriptureOrdering = scriptureOrdering.Where(s => s.Notes.Contains(SearchString));
             }
 
             if (!string.IsNullOrEmpty(ScriptureBook))
             {
-                notes = notes.Where(x => x.Book == ScriptureBook);
+                scriptureOrdering = scriptureOrdering.Where(x => x.Book == ScriptureBook);
             }
             Book = new SelectList(await bookQuery.Distinct().ToListAsync());
 
-            // This await is needed for filtering
-            Scripture = await notes.ToListAsync();
-
-            // This bottom await (when on) makes sorting work but makes the filtering await above break.
-            // When this is off, the filtering works, but the sorting breaks.
-            // Scripture = await scriptureOrdering.AsNoTracking().ToListAsync();
+            Scripture = await scriptureOrdering.ToListAsync();
         }
     }
 }
